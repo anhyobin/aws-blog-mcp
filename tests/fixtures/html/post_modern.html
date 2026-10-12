@@ -1,0 +1,110 @@
+<!doctype html>
+<!-- Synthetic fixture: mimics the 2026 AWS blog single-post template. All text is invented. -->
+<html class="aws-lng-ko_KR" lang="ko-KR"><head>
+<meta charset="utf-8">
+<title>가상 게임 스튜디오의 코드 리뷰 자동화 여정 | Amazon Web Services</title>
+<link rel="canonical" href="https://aws.amazon.com/ko/blogs/tech/synthetic-modern-post/">
+<meta property="og:title" content="가상 게임 스튜디오의 코드 리뷰 자동화 여정 | Amazon Web Services">
+<meta property="og:url" content="https://aws.amazon.com/ko/blogs/tech/synthetic-modern-post/">
+<meta property="article:publisher" content="https://www.facebook.com/amazonwebservices">
+<meta property="article:section" content="Artificial Intelligence">
+<meta property="article:tag" content="Artificial Intelligence">
+<meta property="article:tag" content="Developer Tools">
+<meta property="article:published_time" content="2026-03-05T23:30:00+09:00">
+<meta property="article:modified_time" content="2026-03-06T00:10:00+09:00">
+<script>window.dataLayer = window.dataLayer || [];</script>
+</head>
+<body class="awsm page basicpage aws-blogs-page aws-blogs-page-single">
+<header id="aws-page-header"><nav><a href="/ko/">AWS</a></nav></header>
+<main id="aws-page-content-main">
+<h2 class="blog-title"><a href="/ko/blogs/tech/">AWS 기술 블로그</a></h2>
+<article class="blog-post" vocab="https://schema.org/" typeof="TechArticle">
+<meta property="inLanguage" content="ko-KR">
+<meta property="image" content="https://cdn.example.invalid/2026/03/05/cover-1132x630.png">
+<h1 class="lb-h2 blog-post-title" property="name headline">가상 게임 스튜디오의 코드 리뷰 자동화 여정</h1>
+<footer class="blog-post-meta" data-lb-comp="aws-blog:share-dialog">
+<span>by Alex Example and Jamie Sample</span> <span>on <time property="datePublished" datetime="2026-03-05T23:30:00+09:00">05 3월 2026</time></span> <span>in <span class="blog-post-categories"><a href="/ko/blogs/tech/category/artificial-intelligence/" title="View all posts in Artificial Intelligence"><span property="articleSection">Artificial Intelligence</span></a>, <a href="/ko/blogs/tech/category/developer-tools/" title="View all posts in Developer Tools"><span property="articleSection">Developer Tools</span></a>, <a href="/ko/blogs/tech/category/artificial-intelligence/sample-agent/" title="View all posts in Sample Agent"><span property="articleSection">Sample Agent</span></a></span></span> <span><a href="/ko/blogs/tech/synthetic-modern-post/" property="url">Permalink</a></span> <span><a href="#" role="button" data-share-dialog-toggle><span class="span icon-share"></span> Share</a></span>
+<div class="blog-share-dialog" data-share-dialog style="display: none;">
+<ul>
+<li><a aria-label="Share on Facebook" class="lb-txt" href="https://www.facebook.com/sharer/sharer.php?u=https://aws.amazon.com/ko/blogs/tech/synthetic-modern-post/" rel="noopener noreferrer" target="_blank"><span class="icon-facebook-square"></span></a></li>
+<li><a aria-label="Share on Email" class="lb-txt" href="mailto:?subject=x" rel="noopener noreferrer" target="_blank"><span class="icon-envelope-square"></span></a></li>
+</ul>
+</div>
+</footer>
+<section class="blog-post-content lb-rtxt" property="articleBody">
+<h2>들어가며</h2>
+<p>가상의 스튜디오가 <a href="/ko/blogs/tech/older-post/">이전 글</a>을 확장합니다.</p>
+<div class="wp-caption aligncenter" style="width: 810px">
+<img alt="" class="aligncenter" src="Picture1.png" width="800">
+<p class="wp-caption-text"><em>그림 1. 업로드 실수로 깨진 이미지</em></p>
+</div>
+<div class="wp-caption aligncenter" style="width: 810px">
+<img alt="전체 아키텍처" class="aligncenter size-full wp-image-101" src="https://cdn.example.invalid/2026/03/05/architecture.png" width="800">
+<p class="wp-caption-text"><em>그림 2. 전체 아키텍처</em></p>
+</div>
+<h3><strong>1단계: 규칙 파일 작성</strong></h3>
+<p>먼저 저장소 루트에 규칙 파일을 만듭니다.</p>
+<pre><code class="lang-markdown"># Review rules
+```python
+assert True
+```</code></pre>
+<p>다음 명령으로 검증합니다.</p>
+<pre><code class="lang-bash">make lint &amp;&amp; make test</code></pre>
+<h4>결과 비교</h4>
+<table style="border-collapse: collapse;width: 100%">
+<thead>
+<tr>
+<th style="border: 1px solid black;padding: 8px;text-align: center">항목</th>
+<th style="border: 1px solid black;padding: 8px;text-align: center">이전</th>
+<th style="border: 1px solid black;padding: 8px;text-align: center">이후</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="border: 1px solid black;padding: 8px">리뷰 시간</td>
+<td style="border: 1px solid black;padding: 8px">2일</td>
+<td style="border: 1px solid black;padding: 8px">4시간</td>
+</tr>
+<tr>
+<td style="border: 1px solid black;padding: 8px">A|B 테스트</td>
+<td style="border: 1px solid black;padding: 8px">수동</td>
+<td style="border: 1px solid black;padding: 8px">자동<br>매일 실행</td>
+</tr>
+</tbody>
+</table>
+<h5>참고 사항</h5>
+<ul>
+<li>첫 번째 항목</li>
+<li>두 번째 항목</li>
+</ul>
+<p>읽어 주셔서 감사합니다.</p>
+<footer>
+<div class="blog-author-box">
+<div class="blog-author-image">
+<img alt="김예시" src="https://cdn.example.invalid/2026/03/05/guest.jpeg" width="125">
+</div>
+<h3 class="lb-h4">김예시</h3>
+<p>가상 스튜디오의 리드 엔지니어입니다.</p>
+</div>
+</footer>
+</section>
+<footer>
+<div class="blog-author-box" property="author" typeof="Person">
+<div class="blog-author-image">
+<img alt="Alex Example" property="image" src="https://cdn.example.invalid/avatars/alex.jpg" width="125">
+</div>
+<h3 class="lb-h4" property="name">Alex Example</h3>
+<p property="description">Alex Example is a fictional solutions architect.</p>
+</div>
+<div class="blog-author-box" property="author" typeof="Person">
+<div class="blog-author-image">
+<img alt="Jamie Sample" property="image" src="https://cdn.example.invalid/avatars/jamie.jpg" width="125">
+</div>
+<h3 class="lb-h4" property="name">Jamie Sample</h3>
+<p property="description">Jamie Sample is a fictional engineer.</p>
+</div>
+</footer>
+</article>
+</main>
+<footer id="aws-page-footer"><p>Footer</p></footer>
+</body></html>

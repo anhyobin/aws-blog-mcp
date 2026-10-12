@@ -1,0 +1,73 @@
+name: Bug report
+description: Something does not work, returns wrong results, or breaks on a post.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem.
+        **Security issues:** please report them privately instead (see SECURITY.md).
+        **Blog content:** please link to posts rather than pasting their text; posts are copyrighted.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      description: |
+        The prompt you used and, if you can see it in your client, the tool call (tool name and
+        arguments). For reading problems, include the post URL.
+      placeholder: |
+        Tool: search_posts
+        Arguments: {"query": "EKS 비용 최적화"}
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Tool output or error message
+      description: The error text or the relevant part of the result (no need to include post text).
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: aws-blog-mcp version
+      description: Output of `uvx aws-blog-mcp@latest --version` (or `uv run aws-blog-mcp --version` in a checkout).
+      placeholder: aws-blog-mcp 0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: client
+    attributes:
+      label: MCP client
+      options:
+        - Claude Code
+        - Claude Desktop
+        - Kiro
+        - Cursor
+        - VS Code
+        - Other (please describe below)
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Operating system and Python version
+      placeholder: macOS 26, Python 3.13
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: |
+        Optional. Set `AWS_BLOG_MCP_LOG_LEVEL=DEBUG` in the server's environment and paste the
+        relevant stderr output (your client usually shows it in its MCP logs).
+      render: text
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?

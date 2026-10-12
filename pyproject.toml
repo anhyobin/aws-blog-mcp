@@ -1,0 +1,117 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aws-blog-mcp"
+version = "0.1.0"
+description = "Unofficial MCP server to search and read AWS blog posts, starting with the AWS Korea tech blog."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "anhyobin" }]
+keywords = ["mcp", "model-context-protocol", "aws", "blog", "korean", "llm"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Natural Language :: Korean",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
+]
+dependencies = [
+    "anyio>=4.5",
+    "beautifulsoup4>=4.13",
+    "httpx2>=2.13,<3",
+    "lxml>=6",
+    "markdownify>=1.2,<2",
+    "mcp>=2.3,<3",
+    "pydantic>=2.12",
+]
+
+[project.urls]
+Homepage = "https://github.com/anhyobin/aws-blog-mcp"
+Documentation = "https://github.com/anhyobin/aws-blog-mcp#readme"
+Source = "https://github.com/anhyobin/aws-blog-mcp"
+Issues = "https://github.com/anhyobin/aws-blog-mcp/issues"
+Changelog = "https://github.com/anhyobin/aws-blog-mcp/blob/main/CHANGELOG.md"
+
+[project.scripts]
+aws-blog-mcp = "aws_blog_mcp.server:main"
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.414",
+    "pytest>=9.1",
+    "pytest-cov>=7.1",
+    "ruff>=0.16",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aws_blog_mcp"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/",
+    "tests/",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "README.ko.md",
+    "SECURITY.md",
+    "server.json",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "D", "B", "UP", "SIM", "ASYNC", "S", "RUF", "PT", "C4", "PIE", "RET"]
+ignore = [
+    "D105", # magic methods
+    "D107", # __init__
+    "RUF001", # ambiguous unicode in strings: Korean text and typographic punctuation are intentional
+    "RUF002",
+    "RUF003",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "D", "S105", "S106"]
+
+[tool.pyright]
+include = ["src", "tests"]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.11"
+typeCheckingMode = "standard"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = ["-ra", "--strict-markers", "--strict-config"]
+markers = ["live: hits the real aws.amazon.com endpoints (opt in with --run-live)"]
+filterwarnings = ["error"]
+
+[tool.coverage.run]
+source = ["aws_blog_mcp"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true

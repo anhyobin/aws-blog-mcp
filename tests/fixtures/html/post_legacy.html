@@ -1,0 +1,67 @@
+<!doctype html>
+<!-- Synthetic fixture: mimics a 2022 post migrated into the AWS blog template (WordPress
+     "hide-if-no-js" thumbnails, image-only headings, list continuation items, th-only header rows,
+     hide-language code wrappers, thickbox launch buttons). All text is invented. -->
+<html class="aws-lng-ko_KR" lang="ko-KR"><head>
+<meta charset="utf-8">
+<link rel="canonical" href="https://aws.amazon.com/ko/blogs/tech/synthetic-legacy-post/">
+<meta property="og:title" content="샘플 데이터레이크에서 테이블 갱신하기 | Amazon Web Services">
+<meta property="article:published_time" content="2022-07-08T08:15:18+09:00">
+<meta property="article:modified_time" content="2023-07-13T01:57:32+09:00">
+</head>
+<body class="awsm page basicpage aws-blogs-page aws-blogs-page-single">
+<main id="aws-page-content-main">
+<article class="blog-post" vocab="https://schema.org/" typeof="TechArticle">
+<meta property="inLanguage" content="ko-KR">
+<h1 class="lb-h2 blog-post-title" property="name headline">샘플 데이터레이크에서 테이블 갱신하기</h1>
+<footer class="blog-post-meta" data-lb-comp="aws-blog:share-dialog">
+<span>by Taylor Test, Ph.D, Jamie Sample, and Alex Example</span> <span>on <time property="datePublished" datetime="2022-07-08T08:15:18+09:00">08 7월 2022</time></span> <span>in <span class="blog-post-categories"><a href="/ko/blogs/tech/category/analytics/" title="View all posts in Analytics"><span property="articleSection">Analytics</span></a>, <a href="/ko/blogs/tech/category/analytics/sample-glue/" title="View all posts in Sample Glue"><span property="articleSection">Sample Glue</span></a>, <a href="/ko/blogs/tech/category/analytics/" title="View all posts in Analytics"><span property="articleSection">Analytics</span></a></span></span> <span><a href="/ko/blogs/tech/synthetic-legacy-post/" property="url">Permalink</a></span>
+</footer>
+<section class="blog-post-content lb-rtxt" property="articleBody">
+<div id="amazon-polly-audio-table"><div id="amazon-polly-audio-play"><audio controls><source src="https://cdn.example.invalid/polly.mp3"></audio><p>Voiced by Amazon Polly</p></div></div>
+<p>이 예제는 가상의 직원 테이블을 갱신합니다.<script>console.log("tracking")</script></p>
+<p class="hide-if-no-js"><img alt="" class="attachment-post-thumbnail aligncenter" height="317" loading="lazy" src="https://cdn.example.invalid/2022/06/13/Picture1-6.png" style="border: solid 1px #ccc" width="835"></p>
+<h3>준비 단계</h3>
+<p><a aria-describedby="set-post-thumbnail-desc" class="thickbox" href="https://console.aws.amazon.com/cloudformation/home?region=ap-northeast-2#/stacks/new?stackName=sample&amp;templateURL=https://example.invalid/template.yaml" id="set-post-thumbnail" rel="noopener noreferrer" target="_blank"><img alt="" class="attachment-post-thumbnail alignnone" height="22" loading="lazy" src="https://cdn.example.invalid/2022/06/13/launch-stack.png" width="113"></a></p>
+<ol>
+<li>쿼리 편집기를 엽니다.</li>
+<li style="list-style-type: none">
+<pre><code class="lang-sql">select * from "sample_db"."employees" limit 10;</code></pre>
+<p>결과에서 <strong>직원 번호</strong>를 확인합니다.</p>
+<h4 class="hide-if-no-js"><img alt="" class="attachment-post-thumbnail aligncenter" height="388" loading="lazy" src="https://cdn.example.invalid/2022/06/13/Picture27.png" style="border: solid 1px #ccc" width="867"></h4>
+<h4></h4></li>
+<li>테이블을 갱신합니다.</li>
+</ol>
+<table border="1" style="border-color: #000000" width="623">
+<tbody>
+<tr>
+<th style="text-align: center" width="160">컬럼</th>
+<th style="text-align: center" width="463">설명</th>
+</tr>
+<tr>
+<td style="text-align: center" width="160">emp_no</td>
+<td width="463">직원 <strong><em>고유</em></strong><em> 번호</em></td>
+</tr>
+<tr>
+<td style="text-align: center" width="160">dept</td>
+<td width="463"><p>부서 코드</p><p>예: A|B</p></td>
+</tr>
+</tbody>
+</table>
+<p>다음 쿼리를 실행합니다.</p>
+<div class="hide-language">
+<pre><code class="lang-sql">UPDATE employees SET <strong>dept</strong> = 'B' WHERE emp_no = 1;</code></pre>
+</div>
+<p>이상입니다<em>.</em></p>
+</section>
+<footer>
+<div class="blog-author-box" property="author" typeof="Person">
+<div class="blog-author-image"><img alt="Taylor Test, Ph.D" property="image" src="https://cdn.example.invalid/avatars/taylor.jpg" width="125"></div>
+<h3 class="lb-h4" property="name">Taylor Test, Ph.D</h3>
+<p property="description">A fictional data architect.</p>
+</div>
+</footer>
+<div class="js-mbox" data-mbox="ko_blog_post_comments"></div>
+</article>
+</main>
+</body></html>

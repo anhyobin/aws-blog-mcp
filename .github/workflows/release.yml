@@ -1,0 +1,103 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions: {}
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  FORCE_COLOR: "1"
+
+jobs:
+  build:
+    name: Verify, test and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+        with:
+          enable-cache: false
+      - name: Check tag, pyproject.toml, server.json and CHANGELOG.md agree
+        run: uv run --no-project .github/scripts/check_metadata.py --tag "$GITHUB_REF_NAME" --release
+      - name: Install dependencies
+        run: uv sync --locked
+      - name: pytest
+        run: uv run --locked pytest -q
+      - name: Build sdist and wheel
+        run: uv build
+      - name: Smoke test the wheel
+        run: uv run --isolated --no-project --with dist/*.whl tests/smoke_test.py
+      - name: Check package metadata
+        run: uv run --no-project .github/scripts/check_metadata.py --tag "$GITHUB_REF_NAME" --release --dist dist
+      - name: twine check
+        run: uvx twine@7.0.0 check --strict dist/*
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 30
+
+  pypi:
+    name: Publish to PyPI
+    needs: build
+    if: github.repository == 'anhyobin/aws-blog-mcp' # never from forks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: pypi
+      url: https://pypi.org/project/aws-blog-mcp/
+    permissions:
+      id-token: write # PyPI Trusted Publishing
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
+
+  mcp-registry:
+    name: Publish to the MCP Registry
+    needs: pypi
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write # mcp-publisher login github-oidc
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - id: mcp-publisher
+        uses: $/.github/actions/setup-mcp-publisher
+      - name: Validate server.json
+        env:
+          MCP_PUBLISHER: ${{ steps.mcp-publisher.outputs.path }}
+        run: '"$MCP_PUBLISHER" validate server.json'
+      - name: Log in with GitHub OIDC and publish server.json
+        # The registry verifies the package on PyPI (including the mcp-name marker in its
+        # description), which can lag behind the upload for a few minutes. Logging in again on
+        # every attempt keeps the short-lived registry token fresh.
+        env:
+          MCP_PUBLISHER: ${{ steps.mcp-publisher.outputs.path }}
+        run: |
+          set -uo pipefail
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do
+            if "$MCP_PUBLISHER" login github-oidc && "$MCP_PUBLISHER" publish server.json; then
+              exit 0
+            fi
+            echo "::warning::Publish attempt ${attempt} failed; retrying in 60 seconds."
+            sleep 60
+          done
+          echo "::error::Publishing to the MCP Registry failed after 10 attempts."
+          exit 1

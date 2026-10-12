@@ -1,0 +1,35 @@
+name: Live tests
+
+# Runs the tests marked "live" against the real aws.amazon.com to catch changes in the
+# undocumented directory API and the blog page template. Kept small and infrequent on purpose.
+
+on:
+  schedule:
+    - cron: "23 1 * * 1" # Mondays 01:23 UTC (10:23 KST)
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: live-tests
+  cancel-in-progress: false
+
+env:
+  FORCE_COLOR: "1"
+
+jobs:
+  live:
+    name: Live tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+      - name: Install dependencies
+        run: uv sync --locked
+      - name: pytest (live)
+        run: uv run --locked pytest -m live --run-live -v

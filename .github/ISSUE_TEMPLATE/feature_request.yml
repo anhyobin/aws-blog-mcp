@@ -1,0 +1,42 @@
+name: Feature request
+description: Suggest an improvement, a new tool, better search results, or another AWS blog.
+labels: [enhancement]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of change?
+      options:
+        - Search quality (a query should find a post, or ranks it badly)
+        - Reading (markdown output of a post)
+        - Support another AWS blog
+        - New tool or tool parameter
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What are you trying to do, and what gets in the way today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: |
+        How should it work? For search quality, include the query and the URL of the post you
+        expected. For another blog, include the blog's home URL (e.g. https://aws.amazon.com/jp/blogs/news/).
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched the existing issues for a similar request.
+          required: true

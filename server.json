@@ -1,0 +1,42 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.anhyobin/aws-blog-mcp",
+  "title": "AWS Blog MCP (unofficial)",
+  "description": "Unofficial MCP server to search and read AWS Korea tech blog posts (AWS 기술 블로그) as markdown.",
+  "version": "0.1.0",
+  "websiteUrl": "https://github.com/anhyobin/aws-blog-mcp",
+  "repository": {
+    "url": "https://github.com/anhyobin/aws-blog-mcp",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "pypi",
+      "registryBaseUrl": "https://pypi.org",
+      "identifier": "aws-blog-mcp",
+      "version": "0.1.0",
+      "runtimeHint": "uvx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "AWS_BLOG_MCP_LOG_LEVEL",
+          "description": "Log level for messages written to stderr: DEBUG, INFO, WARNING, ERROR or CRITICAL.",
+          "format": "string",
+          "isRequired": false,
+          "isSecret": false,
+          "default": "WARNING",
+          "choices": ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
+        },
+        {
+          "name": "AWS_BLOG_MCP_USER_AGENT",
+          "description": "Overrides the User-Agent sent to aws.amazon.com (default: aws-blog-mcp/<version> plus the project URL).",
+          "format": "string",
+          "isRequired": false,
+          "isSecret": false
+        }
+      ]
+    }
+  ]
+}

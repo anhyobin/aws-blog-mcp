@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/anhyobin/aws-blog-mcp/security/advisories/new
+    about: Please report vulnerabilities privately, not in a public issue.
+  - name: Vulnerabilities in AWS services or aws.amazon.com
+    url: https://aws.amazon.com/security/vulnerability-reporting/
+    about: This project is unofficial; report issues with AWS itself to AWS.
+  - name: Questions about a blog post's content
+    url: https://aws.amazon.com/ko/blogs/tech/
+    about: This project only fetches posts and cannot change them; contact the post's authors or AWS.

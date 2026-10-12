@@ -1,0 +1,13 @@
+aws-blog-mcp
+Copyright 2026 anhyobin
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This is an unofficial, independent project. It is not affiliated with, endorsed by, or
+sponsored by Amazon Web Services, Inc., Amazon.com, Inc. or their affiliates. "AWS",
+"Amazon Web Services" and related marks are trademarks of Amazon.com, Inc. or its affiliates.
+
+Blog posts that this software retrieves from aws.amazon.com are copyrighted by Amazon Web
+Services, Inc. or its affiliates (or their respective authors). They are fetched on demand when a
+user asks for them and are not included in, or redistributed with, this software. Use of that
+content is subject to the AWS Site Terms (https://aws.amazon.com/terms/).
